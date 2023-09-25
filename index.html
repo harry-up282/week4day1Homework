@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Day1: Homework</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Embed style method -->
+    <!-- <style></style> -->
+  </head>
+  <body id="home">
+    <div id="container">
+      <header>
+        <!-- <img
+          src="images/cliff_ocean.jpg"
+          alt="Ocean View Cliff"
+          width="1280"
+          height="564"
+        /> -->
+        <div class="main-header">
+          <div class="logo">
+            <img src="images/logo.png" alt="Great cliff's logo" width="125" />
+            <!-- <h3>Great Cliff's Logo</h3> -->
+          </div>
+
+          <!-- </header> -->
+          <nav class="main-menu">
+            <ul>
+              <li class="active"><a href="index.html">Home</a></li>
+              <li>Cliffs</li>
+              <li><a href="activities.html">Activities</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <section id="timeofday">
+        <span>Your current Local time </span><span id="clock"></span>
+      </section>
+      <main>
+        <div class="content">
+          <h1>Introducing California's Greatest Cliffs</h1>
+
+          <h2>What is so unique about California cliffs?</h2>
+          <p>
+            California cliffs are one of a kind in the United States where no
+            cliffs are as magnificent and beautiful as them. And California is
+            the only state that have cliffs that fronts all possible
+            environments: sea, river, mountains and canyons. There are four such
+            individual unique cliffs: West Cliff, North Cliff, East Cliff and
+            South Cliff. All offer fantastic overlooking views, recreational
+            areas, camping sites, wildlife watch spots and overnight cabins.
+          </p>
+          <h2>Where are these cliffs?</h2>
+          <p>
+            Located within a 100 mile radius from Irvine, California, they can
+            be reached by roads easily. The closest cliff to Irvine is West
+            Cliff, which is the most popular and most visited.
+          </p>
+        </div>
+        <section>
+          <ul id="partners"></ul>
+          <!-- <ul id="partners">
+            <li class="partner">
+              <img
+                src="images/partners/partner-bustour.png"
+                alt="partner bus tour"
+              />
+            </li>
+            <li class="partner">
+              <img
+                src="images/partners/partner-cabinrental.png"
+                alt="partner cabin rental"
+              />
+            </li>
+            <li class="partner">
+              <img
+                src="images/partners/partner-campingadv.png"
+                alt="partner camping adventure"
+              />
+            </li>
+            <li class="partner">
+              <img
+                src="images/partners/partner-collegetours.png"
+                alt="partner college tour"
+              />
+            </li>
+            <li class="partner">
+              <img
+                src="images/partners/partner-rentalbike.png"
+                alt="partner rental bike tour"
+              />
+            </li>
+            <li class="partner">
+              <img
+                src="images/partners/partner-tourgroup.png"
+                alt="partner group tour"
+              />
+            </li>
+          </ul> -->
+        </section>
+      </main>
+      <footer>
+        <div id="nondisclaimer">
+          <div class="copy">
+            <p>&copy; Copyright 2020 :: GreatCliffs.com</p>
+          </div>
+          <div class="social">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-twitter"></a>
+          </div>
+        </div>
+        <div id="disclaimer">
+          <p>
+            This website is designed and created solely for educational purposes
+            only at Westcliff University. All contents are not intended for any
+            commercial gain or use.
+          </p>
+        </div>
+      </footer>
+    </div>
+    <!-- JavaScript -->
+    <script>
+      // Time data function
+      function currentTime() {
+        var d = new Date();
+        var hr = d.getHours();
+        var min = d.getMinutes();
+        var sec = d.getSeconds();
+        var ampm; //Empty variable
+
+        if (sec < 10) {
+          sec = "0" + sec;
+        }
+        if (min < 10) {
+          min = "0" + min;
+        }
+        if (hr == 12) {
+          ampm = "PM";
+        } else if (hr > 12) {
+          hr -= "12";
+          ampm = "PM";
+        } else {
+          ampm = "AM";
+        }
+
+        var time = hr + ":" + min + ":" + sec + " " + ampm;
+        document.getElementById("clock").innerText = time;
+        var utchr = d.getUTCHours();
+
+        // Calculate time difference between GMT and local hour
+        var timeDiff = hr - utchr;
+
+        // Convert negative time difference to positive (adjusted time difference)
+        var adjTimeDiff = timeDiff < 0 ? -timeDiff : timeDiff;
+
+        // Determine time zone
+        var timeZone;
+        if (timeDiff == 0) {
+          timeZone = "GMT";
+        } else if (timeDiff < 0) {
+          timeZone = "GMT+" + adjTimeDiff;
+        } else {
+          timeZone = "GMT-" + adjTimeDiff;
+        }
+        // Add time zone to the end of the time format
+        time += " " + timeZone;
+
+        // Display the updated time with time zone
+        document.getElementById("clock").innerText = time;
+
+        // setInterval(currentTime, 1000);
+        setTimeout(currentTime, 1000);
+      }
+      currentTime();
+
+      var photos = []; //Declaring an empty array to store image elements
+      var fileNames = []; //Declaring an empty element to store image filename
+      var imageList = []; //Declaring an empty array to store html list that contains image
+      var image; //Declare empty variable to store the assembled image list codes
+      var openList = "<li class='partner'>"; // Declare a variable to contain the open list tag
+      var closeList = "</li>"; //Declare a variable to contain the close list tag
+      // create a loop to creATE 6 images  starting with index 0
+      for (var i = 0; i < 6; i++) {
+        fileNames.push("partner" + (i + 1)); //create image filename and store in the array
+        photos.push("<img src='images/partners/" + fileNames[i] + ".png'>"); //Assemblingthe filename into a large element
+        image = openList + photos[i] + closeList;
+        imageList.push(image);
+      }
+      document.getElementById("partners").innerHTML = imageList;
+    </script>
+  </body>
+</html>
