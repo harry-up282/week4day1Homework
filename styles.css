@@ -266,3 +266,12 @@ input[type="submit"] {
   font-weight: bolder;
   font-size: 18px;
 }
+form .button input {
+  width: 8em;
+  height: 2.5em;
+  font-size: 1.2em;
+  font-weight: bold;
+  /* background-color: #4977d1; */
+  color: #fff;
+  border: none;
+}
